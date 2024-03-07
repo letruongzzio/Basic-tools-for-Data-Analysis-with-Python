@@ -8,8 +8,18 @@ The mathematical foundations of ML are provided by mathematical optimization (ma
 
 There are different types of machine learning we will focus on during the next sections of the course: Supervised Learning and Unsupervised Learning.
 
+## **Supervised Learning.**
 
-## **Machine Learning Process.**
+Supervised learning, also known as supervised machine learning, is a subcategory of machine learning and artificial intelligence. It is defined by its use of labeled datasets to train algorithms that to classify data or predict outcomes accurately. As input data is fed into the model, it adjusts its weights until the model has been fitted appropriately, which occurs as part of the cross validation process. Supervised learning helps organizations solve for a variety of real-world problems at scale, such as classifying spam in a separate folder from your inbox.
+
+For example, a segment of text could have a category label, such as:
++ Spam vs. Legitimate Email,
++ Positive vs. Negative Movie Review.
+
+The network receives a set of inputs along with the corresponding correct outputs, and the algorithm learns by comparing its actual 
+output with correct outputs to find errors. It then modifies the model accordingly. Supervised learning is commonly used in applications where historical data predicts likely future events.
+
+Supervised Learning process:
 
 ![alt text](image.png)
 
@@ -24,17 +34,6 @@ There are different types of machine learning we will focus on during the next s
 5. **Model Deployment**: If the model has been tested and shows good performance, it can be deployed for actual use. This can include integrating the model into an application or service, or using the model to generate predictions or useful information from new data.
 
 We often divide the data set with about 30% used to test the data and the remaining 70% used to run the data model.
-
-## **Supervised Learning.**
-
-Supervised learning, also known as supervised machine learning, is a subcategory of machine learning and artificial intelligence. It is defined by its use of labeled datasets to train algorithms that to classify data or predict outcomes accurately. As input data is fed into the model, it adjusts its weights until the model has been fitted appropriately, which occurs as part of the cross validation process. Supervised learning helps organizations solve for a variety of real-world problems at scale, such as classifying spam in a separate folder from your inbox.
-
-For example, a segment of text could have a category label, such as:
-+ Spam vs. Legitimate Email,
-+ Positive vs. Negative Movie Review.
-
-The network receives a set of inputs along with the corresponding correct outputs, and the algorithm learns by comparing its actual 
-output with correct outputs to find errors. It then modifies the model accordingly. Supervised learning is commonly used in applications where historical data predicts likely future events.
 
 What we just showed is a simplified approach to supervised learning, it contains an issue! Is it fair to use our single split of the data to evaluate our models performance? After all, we were given the chance to update the model parameters again and again.
 
