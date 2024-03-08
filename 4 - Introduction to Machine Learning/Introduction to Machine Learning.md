@@ -118,9 +118,11 @@ Summary:
 
         c. Early stopping during the training phase (have an eye over the loss over the training period as soon as loss begins to increase, stop training).
 
-        d. Ridge Regularization and Lasso Regularization (You can read about them at: https://www.geeksforgeeks.org/lasso-vs-ridge-vs-elastic-net-ml/ and https://www.geeksforgeeks.org/implementation-of-lasso-regression-from-scratch-using-python/).
+        d. Ridge Regularization and Lasso Regularization.
 
         e. Use dropout for neural networks to tackle overfitting.
+
+You can read more about [Ridge Regularization](https://www.geeksforgeeks.org/lasso-vs-ridge-vs-elastic-net-ml/) and [Lasso Regularization](https://www.geeksforgeeks.org/implementation-of-lasso-regression-from-scratch-using-python/) by click on its, the reference sources about them are collected in Greeks for Greesk website.
 
 ![alt text](image-4.png)
 
@@ -133,3 +135,104 @@ Summary:
 ![alt text](image-8.png)
 
 ### **4. Good Fit in a Statistical Model.**
+
+Ideally, the case when the model makes the predictions with 0 error, is said to have a good fit on the data. This situation is achievable at a spot between overfitting and underfitting. In order to understand it, we will have to look at the performance of our model with the passage of time, while it is learning from the training dataset.
+
+With the passage of time, our model will keep on learning, and thus the error for the model on the training and testing data will keep on decreasing. If it will learn for too long, the model will become more prone to overfitting due to the presence of noise and less useful details. Hence the performance of our model will decrease. In order to get a good fit, we will stop at a point just before where the error starts increasing. At this point, the model is said to have good skills in training datasets as well as our unseen testing dataset.
+
+I think the above is just a theory. To make it easier to imagine, we should go into an example, specifically as follows:
+
++ Good model:
+
+![alt text](image-9.png)
+
++ Bad model:
+
+![alt text](image-10.png)
+
+When thinking about overfitting and underfitting we want to keep in mind the relationship of model performance on the training set versus the test validation set.
+
+Let’s imagine we split our data into a <span style="color: red">**training set**</span> and a <span style="color: blue">**test set**</span>.
+
++ We first see performance on the <span style="color: red">**training set**</span>:
+
+![alt text](image-11.png)
+
++ Next we check performance on the <span style="color: blue">**test set**</span>. Ideally, the model would perform well on both, with similar behavior:
+
+![alt text](image-12.png)
+
++ But what happens if we overfit on the <span style="color: red">**training data**</span>? That means we would perform poorly on new <span style="color: blue">**test data**</span>!
+
+![alt text](image-13.png)
+
+![alt text](image-14.png)
+
++ This is a good indication of training too much on the <span style="color: red">**training data**</span>, you should look for the point to cut off training time!
+
+![alt text](image-15.png)
+
+## **Evaluating Performance.**
+
+### **1. Clasification.**
+
+We just learned that after our machine learning process is complete, we will use performance metrics to evaluate how our model did. Let’s discuss classification metrics in more detail! The key classification metrics we need to understand are:
+
++ Accuracy,
++ Recall,
++ Precision,
++ F1-Score.
+
+But first, we should understand the reasoning behind these metrics and how they will actually work in the real world! Typically in any classification task, your model can only achieve two results: Either your model was correct in its prediction or your model was incorrect in its prediction.
+
+Fortunately incorrect vs correct expands to situations where you have multiple classes, such as trying to predict categories of more than two. For example, you have categories A, B, C, and D, you can either be correct in predicting the correct category or incorrect in predicting the right category.
+
+For the purposes of explaining the metrics, let’s imagine a **binary classification** situation, where we only have two available classes and this idea is going to expand to multiple classes as well.
+
+In my example, we will attempt to predict if an image is a dog or a cat. Since this is supervised learning, we will first fit/train a model on training data, then test the model on testing data. That means we're gonna have images that someone's already gone ahead and labeled dog or cat so we know the correct answer on these images. We're then gonna show new images that the model hasn't seen before get the model's prediction and compare the results of the model's prediction to the correct answer that we already know. Once we have the model’s predictions from the `X_test data`, we compare it to the true `y` values (the correct labels).
+
++ Let's imagine we've already trained our model on some training data, and now it's time to actually evaluate the model's perfomance. This is where our test dataset comes in:
+
+![alt text](image-16.png)
+
++ We take a test image from what we're gonna label `X_test data`:
+
+![alt text](image-17.png)
+
++ And there is a corresponding correct label from `y_test`:
+
+![alt text](image-18.png)
+
++ The model is going to make some prediction and the model predicts that this is a dog:
+
+![alt text](image-19.png)
+
++ We then compare the prediction to the correct label. So the dog equal dog and in this case, it was correct:
+
+![alt text](image-20.png)
+
++ However, maybe it predicted that this image was a cat and in this case, this comparition to the correct label would be incorrect:
+
+![alt text](image-21.png)
+
+We repeat this process for all the images in our `X_test data`. At the end we will have a count of correct matches and a count of incorrect matches. The key realization we need to make, is that in the real world, not all incorrect or correct matches hold equal value!
+
+Also in the real world, a single metric won’t tell the complete story! To understand all of this, let’s bring back the 4 metrics we mentioned and see how  they are calculated. We could organize our predicted values compared to the real values in a **confusion matrix**.
+
+**a. Accuracy:**
+
+Accuracy in classification problems is the number of correct predictions made by the model divided by the total number of predictions. For example,if the X_test set was 100 images and our model correctly predicted 80 images, then we have 80/100 (0.8 or 80% accuracy).
+
+Accuracy is useful when target classes are well balanced. So what does 'well balanced' means? It means the actual labels themselves are roughly equally represented in the dataset. In our example, we would have roughly the same amount of cat images as we have dog images.
+
+
+
+## **Reference source:**
+
+$[1].$ Pierian Data, [Python for Data Science Course](https://pieriantraining.com/learn/python-for-data-science/).
+
+$[2].$ Greeks for Greeks, [ML | Underfitting and Overfitting](https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/).
+
+$[3].$ Wikipedia, [Machine learning](https://en.wikipedia.org/wiki/Machine_learning).
+
+$[4].$ Wikipedia, [Supervised learning](https://en.wikipedia.org/wiki/Supervised_learning).
