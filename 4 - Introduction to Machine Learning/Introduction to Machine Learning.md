@@ -221,10 +221,44 @@ Also in the real world, a single metric won’t tell the complete story! To unde
 
 **a. Accuracy:**
 
-Accuracy in classification problems is the number of correct predictions made by the model divided by the total number of predictions. For example,if the X_test set was 100 images and our model correctly predicted 80 images, then we have 80/100 (0.8 or 80% accuracy).
+Accuracy in classification problems is *the number of correct predictions made by the model **divided by** the total number of predictions*. For example,if the `X_test` set was 100 images and our model correctly predicted 80 images, then we have 80/100 (0.8 or 80% accuracy).
 
 Accuracy is useful when target classes are well balanced. So what does 'well balanced' means? It means the actual labels themselves are roughly equally represented in the dataset. In our example, we would have roughly the same amount of cat images as we have dog images.
 
+Accuracy is not a good choice with unbalanced classes! Imagine we had 99 images of dogs and 1 image of a cat. If our model was simply a line that 
+always predicted dog we would get 99% accuracy!
+
+**b. Recall:**
+
+Ability of a model to find all the relevant cases within a dataset. The precise definition of recall is *the number of true positives **divided by** the number of true positives plus the number of false negatives*.
+
+**c. Precision:**
+
+Ability of a classification model to identify only the relevant data points. Precision is defined as t*he number of true positives **divided by** the number of true positives plus the number of false positives*.
+
+***Recall and Precision:***
+
+Often you have a trade-off between Recall and Precision. While recall expresses the ability to find all relevant instances in a dataset, precision expresses the proportion of the data points our model says was relevant actually were relevant.
+
+**d. F1-score:**
+
+In cases where we want to find an optimal blend of precision and recall we can combine the two metrics using what is called the F1 score. The F1 score is the harmonic mean of precision and recall when taking both metrics into account in the following equation:
+
+$$F_1 = 2\cdot\frac{\text{precision}\cdot\text{recall}}{\text{precision}+\text{recall}}$$
+
+We use the harmonic mean instead of a simple average because it punishes extreme values. A classifier with a precision of 1.0 and a recall of 0.0 has a simple average of 0.5 but an F1 score of 0. 
+
+***Confusion matrix:***
+
+![alt text](image-22.png)
+
+We will explain a little about the two parts: positive and negative predictions, but I will focus on True Positive (TP) and True Negative (TN). For example, your classification model is predicting a person to have a disease, if the person actually has the disease then it will be TP and if the person does not have the disease but the model predicted to have the disease then it will be TN, and for other cases are the same.
+
+After that, there's a lot of other metrics you can calculate:
+
+![alt text](image-23.png)
+
+The main point to remember with the confusion matrix and the various calculated metrics is that they are all fundamentally ways of comparing the predicted values versus the true values. What constitutes “good” metrics, will really depend on the specific situation! Still confused on the confusion matrix? No problem! Check out the Wikipedia page for it, it has a really good diagram with all the formulas for all the metrics.
 
 
 ## **Reference source:**
@@ -236,3 +270,5 @@ $[2].$ Greeks for Greeks, [ML | Underfitting and Overfitting](https://www.geeksf
 $[3].$ Wikipedia, [Machine learning](https://en.wikipedia.org/wiki/Machine_learning).
 
 $[4].$ Wikipedia, [Supervised learning](https://en.wikipedia.org/wiki/Supervised_learning).
+
+$[5].$ Wikipedia, [Confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix)
