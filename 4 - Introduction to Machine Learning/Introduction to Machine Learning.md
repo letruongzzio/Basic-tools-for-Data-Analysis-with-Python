@@ -12,9 +12,17 @@ There are different types of machine learning we will focus on during the next s
 
 Supervised learning, also known as supervised machine learning, is a subcategory of machine learning and artificial intelligence. It is defined by its use of labeled datasets to train algorithms that to classify data or predict outcomes accurately. As input data is fed into the model, it adjusts its weights until the model has been fitted appropriately, which occurs as part of the cross validation process. Supervised learning helps organizations solve for a variety of real-world problems at scale, such as classifying spam in a separate folder from your inbox.
 
-For example, a segment of text could have a category label, such as:
-+ Spam vs. Legitimate Email,
-+ Positive vs. Negative Movie Review.
+***Applications of Supervised learning:*** Supervised learning can be used to solve a wide variety of problems, including:
+
++ Spam filtering: Supervised learning algorithms can be trained to identify and classify spam emails based on their content, helping users avoid unwanted messages.
+
++ Image classification: Supervised learning can automatically classify images into different categories, such as animals, objects, or scenes, facilitating tasks like image search, content moderation, and image-based product recommendations.
+
++ Medical diagnosis: Supervised learning can assist in medical diagnosis by analyzing patient data, such as medical images, test results, and patient history, to identify patterns that suggest specific diseases or conditions.
+
++ Fraud detection: Supervised learning models can analyze financial transactions and identify patterns that indicate fraudulent activity, helping financial institutions prevent fraud and protect their customers.
+
++ Natural language processing (NLP): Supervised learning plays a crucial role in NLP tasks, including sentiment analysis, machine translation, and text summarization, enabling machines to understand and process human language effectively.
 
 The network receives a set of inputs along with the corresponding correct outputs, and the algorithm learns by comparing its actual 
 output with correct outputs to find errors. It then modifies the model accordingly. Supervised learning is commonly used in applications where historical data predicts likely future events.
@@ -44,6 +52,37 @@ To fix this issue, data is often split into 3 sets:
 2. **Validation Data**: This data is used to adjust the hyperparameters of the model. Hyperparameters are parameters that are not learned from training data but are set in advance. For example, the maximum depth of a decision tree is a hyperparameter. Validation data help us choose the best values for these hyperparameters.
 
 3. **Test Data**: After the model has been trained and tuned, we use test data to evaluate the final performance of the model. This helps us understand the model's generalization ability, i.e. its ability to correctly predict the output for new data it has never seen during training.
+
+For example, supervised learning, as the name indicates, has the presence of a supervisor as a teacher. Supervised learning is when we teach or train the machine using data that is well-labelled. Which means some data is already tagged with the correct answer. After that, the machine is provided with a new set of examples(data) so that the supervised learning algorithm analyses the training data(set of training examples) and produces a correct outcome from labeled data. I labeled dataset of images of Elephant, Camel and Cow would have each image tagged with either “Elephant” , “Camel” or “Cow.”
+
+![alt text](image-26.png)
+
+***Advantages of Supervised learning:***
+
++ Supervised learning allows collecting data and produces data output from previous experiences.
+
++ Helps to optimize performance criteria with the help of experience.
+
++ Supervised machine learning helps to solve various types of real-world computation problems.
+
++ It performs classification and regression tasks.
+
++ It allows estimating or mapping the result to a new sample.
+
++ We have complete control over choosing the number of classes we want in the training data.
+
+***Disadvantages of Supervised learning:***
++ Classifying big data can be challenging.
+
++ Training for supervised learning needs a lot of computation time. So, it requires a lot of time.
+
++ Supervised learning cannot handle all complex tasks in Machine Learning.
+
++ Computation time is vast for supervised learning.
+
++ It requires a labelled data set.
+
++ It requires a training process.
 
 This last measure is the measure by which we evaluate the actual performance of the model.
 
@@ -260,15 +299,162 @@ After that, there's a lot of other metrics you can calculate:
 
 The main point to remember with the confusion matrix and the various calculated metrics is that they are all fundamentally ways of comparing the predicted values versus the true values. What constitutes “good” metrics, will really depend on the specific situation! Still confused on the confusion matrix? No problem! Check out the Wikipedia page for it, it has a really good diagram with all the formulas for all the metrics.
 
+### **2. Regression.**
+
+Regression is a task when a model attempts to predict continuous values (unlike categorical values, which is classification). You may have heard of some evaluation metrics like accuracy or recall, these sort of metrics aren’t useful for regression problems, we need metrics designed for **continuous** values!
+
+For example, attempting to predict the price of a house given its features is a **regression task**, but attempting to predict the country house is in given its features would be a classification task.
+
+Let’s discuss some of the most common evaluation metrics for regression:
+
++ Mean Absolute Error
++ Mean Squared Error
++ Root Mean Square Error
+
+**a. Mean Absolute Error (MAE):**
+
+This is the simplest metric used to analyze the loss over the whole dataset. As we all know the error is basically the difference between the predicted and actual values. Therefore MAE is defined as the average of the errors calculated. Here we calculate the modulus of the error, perform the summation and then divide the result by the number of data points.  It is a positive quantity and is not concerned about the direction. The formula of MAE is given by:
+
+$$\frac{1}{n}\sum_{i=1}^{n}|y_i-\hat{y}_i|$$
+
+In there:
+
++ $n$: Total number of samples or data.
++ $y_i$: The actual or observed value of the ith sample.
++ $\hat{y}_i$: Predicted value of the ith sample.
++ $\left| y_i - \hat{y}_i \right|$: Absolute error between observed value and predicted value.
+
+Now is the issue with mean absolute error, MAE won’t punish large errors. For example, let's take a look at this specific situation where we have one point that's a huge outlier:
+
+![alt text](image-24.png)
+
+We want our error metrics to account for these!
+
+![alt text](image-25.png)
+
+**b. Mean Square Error (MSE):**
+
+The most commonly used metric is Mean Square error or MSE. It is a function used to calculate the loss. We find the difference between the predicted values and the truth variable, square the result and then find the average over the whole dataset. MSE is always positive as we square the values. The small the MSE better is the performance of our model. The formula of MSE is given:
+
+$$\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2$$
+
+In there:
+
++ $n$: Total number of samples or data.
++ $y_i$: The actual or observed value of the ith sample.
++ $\hat{y}_i$: Predicted value of the ith sample.
++ $(y_i-\hat{y}_i)^2$: Square error between observed value and predicted value.
+
+Larger errors are noted more than with MAE, making MSE more popular.
+
+However, there is another problem we have with MSE which is that the square of the true label minus our prediction is actually the square of the units themselves. For example, if we predict the price of a house our MAE error measure will be in dollars, but with MSE we will get an error measure in dollars squared, which very difficult to interpret.
+
+**c. Root Mean Square Error (RMSE):**
+
+RMSE is a popular method (has same units as `y`) and is the extended version of MSE. This method is basically used to evaluate the performance of our model. It indicates how much the data points are spread around the best line. It is the standard deviation of the Mean squared error. A lower value means that the data point lies closer to the best fit line:
+
+$$\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}$$
+
+Most common question: “Is this value of RMSE good?”. It really depends on the context of the situation, if you build a machine learning model using RMSE to predict house prices in a city, it's about $10. An RMSE of $10 is great for predicting the price of a house, but terrible for predicting the price of a candy bar!
+
+***Conclusion:*** Compare your error metric to the average value of the label in your dataset to try to get an intuition of its overall performance. Domain knowledge also plays an important role here! Context of importance is also necessary to consider. We may create a model to predict how much medication to give, in which case small fluctuations in RMSE may actually be very significant. You should now feel comfortable with the various methods of evaluating a regression task.
+
+## **Unsupervised Learning.**
+
+Unsupervised learning is a type of machine learning that learns from unlabeled data. This means that the data does not have any pre-existing labels or categories. The goal of unsupervised learning is to discover patterns and relationships in the data without any explicit guidance.
+
+Unsupervised learning is the training of a machine using information that is neither classified nor labeled and allowing the algorithm to act on that information without guidance. Here the task of the machine is to group unsorted information according to similarities, patterns, and differences without any prior training of data. 
+
+Unlike supervised learning, no teacher is provided that means no training will be given to the machine. Therefore the machine is restricted to find the hidden structure in unlabeled data by itself. 
+
+You can use unsupervised learning to examine the animal data that has been gathered and distinguish between several groups according to the traits and actions of the animals. These groupings might correspond to various animal species, providing you to categorize the creatures without depending on labels that already exist.
+
+![alt text](image-27.png)
+
+Unsupervised Learning process:
+
+![alt text](image-28.png)
+
+1. **Data Acquisition:** This is the first step, where data is collected from various sources.
+2. **Data Cleaning:** Collected data is prepared and cleaned for analysis. This process includes removing noisy data, filling in missing values, and normalizing the data.
+3. **Model Training & Building:** Here, algorithms are applied to learn patterns from cleaned data.
+4. **Transformation:** Changes made to optimize or fine-tune the model.
+5. **Model Deployment:** After transformation, the model is deployed for actual use or decision making.
+
+Key Points:
+
++ Unsupervised learning allows the model to discover patterns and relationships in unlabeled data.
++ Clustering algorithms group similar data points together based on their inherent characteristics.
++ Feature extraction captures essential information from the data, enabling the model to make meaningful distinctions.
++ Label association assigns categories to the clusters based on the extracted patterns and characteristics.
+
+For example, imagine you have a machine learning model trained on a large dataset of unlabeled images, containing both dogs and cats. The model has never seen an image of a dog or cat before, and it has no pre-existing labels or categories for these animals. Your task is to use unsupervised learning to identify the dogs and cats in a new, unseen image. For instance, suppose it is given an image having both dogs and cats which it has never seen. Thus the machine has no idea about the features of dogs and cats so we can’t categorize it as ‘dogs and cats ‘. But it can categorize them according to their similarities, patterns, and differences, i.e., we can easily categorize the above picture into two parts. The first may contain all pics having dogs in them and the second part may contain all pics having cats in them. Here you didn’t learn anything before, which means no training data or examples. It allows the model to work on its own to discover patterns and information that was previously undetected. It mainly deals with unlabelled data.
+
+***Types of Unsupervised Learning:*** Unsupervised learning is classified into two categories of algorithms: 
+
++ Clustering: A clustering problem is where you want to discover the inherent groupings in the data, such as grouping customers by purchasing behavior.
++ Association: An association rule learning problem is where you want to discover rules that describe large portions of your data, such as people that buy X also tend to buy Y.
+
+There are certain tasks that fall under unsupervised learning:
+
++ Clustering: Grouping together unlabeled data points into categories/clusters. Data points are assigned to a cluster, based on similarity.
++ Anomaly Detection: Attempts to detect outliers in a dataset. For example, fraudulent transactions on a credit card.
++ Dimensionality Reduction: Data processing techniques that reduces the number of features in a dataset, either for compression, or to better understand underlying trends within a dataset.
+
+***Application of Unsupervised learning:*** Non-supervised learning can be used to solve a wide variety of problems, including:
+
++ Anomaly detection: Unsupervised learning can identify unusual patterns or deviations from normal behavior in data, enabling the detection of fraud, intrusion, or system failures.
++ Scientific discovery: Unsupervised learning can uncover hidden relationships and patterns in scientific data, leading to new hypotheses and insights in various scientific fields.
++ Recommendation systems: Unsupervised learning can identify patterns and similarities in user behavior and preferences to recommend products, movies, or music that align with their interests.
++ Customer segmentation: Unsupervised learning can identify groups of customers with similar characteristics, allowing businesses to target marketing campaigns and improve customer service more effectively.
++ Image analysis: Unsupervised learning can group images based on their content, facilitating tasks such as image classification, object detection, and image retrieval.
+
+***Advantages of Unsupervised learning:***
+
++ It does not require training data to be labeled.
++ Dimensionality reduction can be easily accomplished using unsupervised learning. 
++ Capable of finding previously unknown patterns in data.
++ Unsupervised learning can help you gain insights from unlabeled data that you might not have been able to get otherwise.
++ Unsupervised learning is good at finding patterns and relationships in data without being told what to look for. This can help you learn new things about your data.
+
+***Disadvantages of Unsupervised learning:***
+
++ Difficult to measure accuracy or effectiveness due to lack of predefined answers during training. 
++ The results often have lesser accuracy.
++ The user needs to spend time interpreting and label the classes which follow that classification.
++ Unsupervised learning can be sensitive to data quality, including missing values, outliers, and noisy data.
++ Without labeled data, it can be difficult to evaluate the performance of unsupervised learning models, making it challenging to assess their effectiveness.
+
+## **Supervised vs. Unsupervised Machine Learning.**
+
+| Parameters | Supervised Learning | Unsupervised learning |
+| --- | --- | --- |
+| Input data | Algorithms are trained using labeled data. | Algorithms are used with unlabeled data. |
+| Computational complexity | Simple method | High computational complexity |
+| Accuracy | Very accurate | Less accurate |
+| No. of classes | No. of classes is known | No. of classes is not known |
+| Data Analysis | Use offline analytics | Use real-time data analytics |
+| Algorithm used | Linear regression and logistic regression, random forests, multiclass classifiers, decision trees, Support vector machines, Neural networks, etc. | K-Means Clustering, Hierarchical Clustering, KNN, Apriori Algorithm, etc. |
+| Output | The desired output is provided. | Expected output is not provided. | Parameters | Supervised Learning | Unsupervised learning |
+| Training data | Use training data to infer the model. | Do not use training data. |
+| Complex Models | It is not possible to learn larger and more complex models than with supervised learning. | Larger and more complex models can be learned with unsupervised learning. |
+| Model | We can test our model. | We cannot test our model. |
+| Called | Supervised learning is also known as classification. | Unsupervised learning is also known as clustering. |
+| Example | For example: Optical character recognition. | Example: Find faces in images. |
+| Supervision | Supervised learning requires supervision to train the model. | Unsupervised learning does not require any supervision to train the model. |
 
 ## **Reference source:**
 
 $[1].$ Pierian Data, [Python for Data Science Course](https://pieriantraining.com/learn/python-for-data-science/).
 
-$[2].$ Greeks for Greeks, [ML | Underfitting and Overfitting](https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/).
+$[2].$ GreeksforGreeks, [Supervised and Unsupervised Learning](https://www.geeksforgeeks.org/supervised-unsupervised-learning/).
 
-$[3].$ Wikipedia, [Machine learning](https://en.wikipedia.org/wiki/Machine_learning).
+$[3].$ GreeksforGreeks, [ML | Underfitting and Overfitting](https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/).
 
-$[4].$ Wikipedia, [Supervised learning](https://en.wikipedia.org/wiki/Supervised_learning).
+$[4].$ Wikipedia, [Machine learning](https://en.wikipedia.org/wiki/Machine_learning).
 
-$[5].$ Wikipedia, [Confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix)
+$[5].$ Wikipedia, [Supervised learning](https://en.wikipedia.org/wiki/Supervised_learning).
+
+$[6].$ Wikipedia, [Confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix).
+
+$[7].$ GreeksforGreeks, [Machine Learning Model Evaluation](https://www.geeksforgeeks.org/machine-learning-model-evaluation/).
