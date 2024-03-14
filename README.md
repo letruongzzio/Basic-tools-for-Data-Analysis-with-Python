@@ -2,6 +2,8 @@
 
 ___
 
-## This file is directed by:
+### **These lessons are taught and guided by the following courses:**
 
-![image](https://github.com/letruongzzio/Data-Science-and-Machine-Learning/assets/158147628/2809952d-ee77-4881-bcf0-52762b93cdb8)
+$[1].$ [Python for Data Science and Machine Learning Bootcamp](https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/?couponCode=ST15MT31224).
+
+$[2].$ [Machine Learning A-Z: AI, Python & R + ChatGPT Prize [2024]](https://www.udemy.com/course/machinelearning/?couponCode=ST15MT31224).
